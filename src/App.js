@@ -4,9 +4,31 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import About from "./components/About";
+import AlertClick from "./components/AlertClick";
+import AlertAuto from "./components/AlertAuto";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+
+  const [alert, setAlert] = useState(null);
+
+  const showClickAlert = (msg, type) => {
+    setAlert({
+      msg,
+      type,
+    });
+  };
+
+  const showAutoAlert = (msg, type) => {
+    setAlert({
+      msg,
+      type,
+    });
+
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  };
 
   const toggleMode = () => {
     setDarkMode(darkMode ? false : true);
@@ -26,9 +48,20 @@ function App() {
         about="About"
         mode={darkMode}
         toggleMode={toggleMode}
+        showClickAlert={showClickAlert}
       />
-      {/* <TextForm heading="Enter Your Text Below" mode={darkMode} /> */}
-      <About mode={darkMode}/>
+
+      <AlertClick alert={alert} />
+
+      <AlertAuto alert={alert} />
+
+      <TextForm
+        heading="Enter Your Text Below"
+        mode={darkMode}
+        showAutoAlert={showAutoAlert}
+      />
+
+      {/* <About mode={darkMode}/> */}
     </>
   );
 }

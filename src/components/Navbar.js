@@ -11,16 +11,20 @@ export default function Navbar(props) {
 
   const onModeChangeHandler = () => {
     props.toggleMode();
+    
     if (cssProps.darkMode) {
       setCssProps({
         darkMode: false,
         navBarClass: "light",
       });
+      props.showClickAlert("Mode change to light", "success");
     } else {
       setCssProps({
         darkMode: true,
         navBarClass: "dark",
       });
+      props.showClickAlert("Mode change to dark", "success");
+
     }
   };
 

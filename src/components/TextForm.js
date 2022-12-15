@@ -10,10 +10,12 @@ export default function TextForm(props) {
 
   const handleUpBtnClick = () => {
     setText(text.toUpperCase());
+    props.showAutoAlert("To uppercase", "success")
   };
 
   const handleLoBtnClick = () => {
     setText(text.toLowerCase());
+    props.showAutoAlert("To lowercase", "success")
   };
 
   return (
