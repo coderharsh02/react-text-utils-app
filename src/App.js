@@ -8,15 +8,24 @@ import AlertClick from "./components/AlertClick";
 import AlertAuto from "./components/AlertAuto";
 
 function App() {
+
   const [darkMode, setDarkMode] = useState(false);
 
   const [alert, setAlert] = useState(null);
+
+  const [bgColor, setBgColor] = useState("light");
+
+  const changeBackgroundColor = (color) => {
+    document.body.className = '';
+    setBgColor(color);
+  };
 
   const showClickAlert = (msg, type) => {
     setAlert({
       msg,
       type,
     });
+
   };
 
   const showAutoAlert = (msg, type) => {
@@ -49,6 +58,7 @@ function App() {
         mode={darkMode}
         toggleMode={toggleMode}
         showClickAlert={showClickAlert}
+        changeBg={changeBackgroundColor}
       />
 
       <AlertClick alert={alert} />

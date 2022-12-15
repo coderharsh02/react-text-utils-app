@@ -21,7 +21,6 @@ export default function Alert(props) {
         id="changeAlert"
       >
         <strong>{props.alert.type}</strong> {props.alert.msg}{" "}
-        {console.log(props)}
       </div>
     )
   );

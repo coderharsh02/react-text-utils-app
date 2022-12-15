@@ -11,7 +11,6 @@ export default function Navbar(props) {
 
   const onModeChangeHandler = () => {
     props.toggleMode();
-    
     if (cssProps.darkMode) {
       setCssProps({
         darkMode: false,
@@ -24,7 +23,13 @@ export default function Navbar(props) {
         navBarClass: "dark",
       });
       props.showClickAlert("Mode change to dark", "success");
+    }
+  };
 
+  const changeBackgroundColor = (e) => {
+    if (e.target.classList[1]) {
+      props.changeBg(e.target.classList[1]);
+      document.body.classList.add(e.target.classList[1]);
     }
   };
 
@@ -60,6 +65,20 @@ export default function Navbar(props) {
               </a>
             </li>
           </ul>
+
+          <div className="dot bg-primary" onClick={changeBackgroundColor}>
+            1
+          </div>
+          <div className="dot bg-success" onClick={changeBackgroundColor}>
+            2
+          </div>
+          <div className="dot bg-warning" onClick={changeBackgroundColor}>
+            3
+          </div>
+          <div className="dot bg-danger" onClick={changeBackgroundColor}>
+            4
+          </div>
+
           <div className="form-check form-switch">
             <input
               className="form-check-input"
@@ -68,6 +87,7 @@ export default function Navbar(props) {
               id="flexSwitchCheckDefault"
               onClick={onModeChangeHandler}
             />
+
             <label
               className={`form-check-label ${
                 cssProps.darkMode ? "text-light" : ""
