@@ -27,15 +27,19 @@ export default function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChangeText}
-            style={props.mode ? {
-              backgroundColor: "rgb(43 31 63)",
-              outline: "white",
-              color: "white"
-            } : {
-              backgroundColor: "white",
-              outline: "black",
-              color: "black"
-            }}
+            style={
+              props.mode
+                ? {
+                    backgroundColor: "rgb(43 31 63)",
+                    outline: "white",
+                    color: "white",
+                  }
+                : {
+                    backgroundColor: "white",
+                    outline: "black",
+                    color: "black",
+                  }
+            }
           ></textarea>
         </div>
 
@@ -49,8 +53,10 @@ export default function TextForm(props) {
 
       <div className="container my-3">
         <h3>Text Summary</h3>
-        <p>{text.split(' ').length} words & {text.length} characters</p>
-        <p>Read Time: {text.split(' ').length * 0.008} minutes</p>
+        <p>
+          {text.split(" ").length} words & {text.length} characters
+        </p>
+        <p>Read Time: {text.split(" ").length * 0.008} minutes</p>
       </div>
     </>
   );
