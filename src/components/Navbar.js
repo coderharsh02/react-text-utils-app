@@ -17,13 +17,23 @@ export default function Navbar(props) {
         navBarClass: "light",
       });
       props.showClickAlert("Mode change to light", "success");
+      document.title = "TextUtilsApp - Light Mode";
     } else {
       setCssProps({
         darkMode: true,
         navBarClass: "dark",
       });
       props.showClickAlert("Mode change to dark", "success");
+      document.title = "TextUtilsApp - Dark Mode";
     }
+
+    // flashing title
+    // setInterval(() => {
+    //   document.title = 'TextUtilsApp - green Mode'
+    // }, 1000);
+    // setInterval(() => {
+    //   document.title = 'TextUtilsApp - red Mode'
+    // }, 1200);
   };
 
   const changeBackgroundColor = (e) => {
@@ -66,18 +76,10 @@ export default function Navbar(props) {
             </li>
           </ul>
 
-          <div className="dot bg-primary" onClick={changeBackgroundColor}>
-            1
-          </div>
-          <div className="dot bg-success" onClick={changeBackgroundColor}>
-            2
-          </div>
-          <div className="dot bg-warning" onClick={changeBackgroundColor}>
-            3
-          </div>
-          <div className="dot bg-danger" onClick={changeBackgroundColor}>
-            4
-          </div>
+          <div className="dot bg-primary" onClick={changeBackgroundColor}></div>
+          <div className="dot bg-success" onClick={changeBackgroundColor}></div>
+          <div className="dot bg-warning" onClick={changeBackgroundColor}></div>
+          <div className="dot bg-danger" onClick={changeBackgroundColor}></div>
 
           <div className="form-check form-switch">
             <input
@@ -104,7 +106,6 @@ export default function Navbar(props) {
 }
 
 // PropTypes
-
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   about: PropTypes.string,
