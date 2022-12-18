@@ -3,6 +3,8 @@ import React, { useState } from "react";
 // abbreviation to import PropTypes => impt
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+
 export default function Navbar(props) {
   const [cssProps, setCssProps] = useState({
     darkMode: props.mode,
@@ -16,15 +18,17 @@ export default function Navbar(props) {
         darkMode: false,
         navBarClass: "light",
       });
-      props.showClickAlert("Mode change to light", "success");
+      props.showAlert("Mode change to light", "success");
       document.title = "TextUtilsApp - Light Mode";
+      document.body.classList = "";
     } else {
       setCssProps({
         darkMode: true,
         navBarClass: "dark",
       });
-      props.showClickAlert("Mode change to dark", "success");
+      props.showAlert("Mode change to dark", "success");
       document.title = "TextUtilsApp - Dark Mode";
+      document.body.classList = "";
     }
 
     // flashing title
@@ -38,8 +42,7 @@ export default function Navbar(props) {
 
   const changeBackgroundColor = (e) => {
     if (e.target.classList[1]) {
-      props.changeBg(e.target.classList[1]);
-      document.body.classList.add(e.target.classList[1]);
+      document.body.classList = e.target.classList[1];
     }
   };
 
@@ -48,9 +51,9 @@ export default function Navbar(props) {
       className={`navbar navbar-expand-lg navbar-${cssProps.navBarClass} bg-${cssProps.navBarClass}`}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -65,14 +68,14 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/about">
                 {props.about}
-              </a>
+              </Link>
             </li>
           </ul>
 

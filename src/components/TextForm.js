@@ -10,12 +10,12 @@ export default function TextForm(props) {
 
   const handleUpBtnClick = () => {
     setText(text.toUpperCase());
-    props.showAutoAlert("To uppercase", "success")
+    props.showAlert("To uppercase", "success")
   };
 
   const handleLoBtnClick = () => {
     setText(text.toLowerCase());
-    props.showAutoAlert("To lowercase", "success")
+    props.showAlert("To lowercase", "success")
   };
 
   return (
@@ -56,13 +56,14 @@ export default function TextForm(props) {
       <div className="container my-3">
         <h3>Text Summary</h3>
         <p>
-          {text.split(" ").length} words & {text.length} characters
+          {text.split(/\s+/).filter(element => element.length !== 0).length} words & {text.length} characters
         </p>
-        <p>Read Time: {text.split(" ").length * 0.008} minutes</p>
+        <p>Read Time: {text.split(/\s+/).filter(element => element.length !== 0).length * 0.008} minutes</p>
       </div>
     </>
   );
 }
+
 TextForm.propTypes = {
   heading: PropTypes.string.isRequired,
 };

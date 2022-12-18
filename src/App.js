@@ -1,31 +1,22 @@
 import "./App.css";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import About from "./components/About";
-import AlertClick from "./components/AlertClick";
-import AlertAuto from "./components/AlertAuto";
+import Alert from "./components/Alert";
 
 function App() {
-
   const [darkMode, setDarkMode] = useState(false);
 
   const [alert, setAlert] = useState(null);
-
-  const [bgColor, setBgColor] = useState("light");
-
-  const changeBackgroundColor = (color) => {
-    document.body.className = '';
-    setBgColor(color);
-  };
 
   const showClickAlert = (msg, type) => {
     setAlert({
       msg,
       type,
     });
-
   };
 
   const showAutoAlert = (msg, type) => {
@@ -51,28 +42,32 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Navbar
         title="Text Utils App"
         about="About"
         mode={darkMode}
         toggleMode={toggleMode}
-        showClickAlert={showClickAlert}
-        changeBg={changeBackgroundColor}
+        showAlert={showClickAlert}
       />
 
-      <AlertClick alert={alert} />
+      <Alert alert={alert} />
 
-      <AlertAuto alert={alert} />
-
-      <TextForm
-        heading="Enter Your Text Below"
-        mode={darkMode}
-        showAutoAlert={showAutoAlert}
-      />
-
-      {/* <About mode={darkMode}/> */}
-    </>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <TextForm
+              heading="Enter Your Text Below"
+              mode={darkMode}
+              showAlert={showAutoAlert}
+            />
+          }
+        ></Route>
+        <Route exact path="/about" element={<About mode={darkMode} />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
